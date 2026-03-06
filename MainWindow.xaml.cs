@@ -19,6 +19,37 @@ namespace esprogrammazioneasincrona
         public MainWindow()
         {
             InitializeComponent();
+            Thread t1 = new Thread(InizioGiro);
+            t1.Start();
+        }
+        Random rnd = new Random();
+        string[] lettere = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+
+        public void InizioGiro()
+        {
+            int i = 0;
+            while (true)
+            {
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    lblLettere.Content = lettere[i%26].ToString();
+                }));
+                i++;
+                Thread.Sleep(100);
+            } 
+                
+
+            
+        }
+        private void btnLettera_Click(object sender, RoutedEventArgs e)
+        {
+            lblParole.Content=lblLettere.Content.ToString()+lblParole.Content.ToString();
+            if (lblParole.Content.ToString().Length == 6)
+            {
+                listaParole.Items.Add(lblParole.Content);
+                lblParole.Content = "";
+
+            }
         }
     }
 }
