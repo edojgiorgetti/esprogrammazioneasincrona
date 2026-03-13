@@ -22,31 +22,33 @@ namespace esprogrammazioneasincrona
             Thread t1 = new Thread(InizioGiro);
             t1.Start();
         }
-        Random rnd = new Random();
+        
         string[] lettere = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-        public void InizioGiro()
+        public async void InizioGiro()
         {
-            int i = 0;
-            while (true)
+            await Task.Run(() =>
             {
-                this.Dispatcher.Invoke(new Action(() =>
+                int i = 0;
+                while (true)
                 {
-                    lblLettere.Content = lettere[i%26].ToString();
-                }));
-                i++;
-                Thread.Sleep(100);
-            } 
-                
+                    this.Dispatcher.Invoke(new Action(() =>
+                    {
+                        lblLettere.Content = lettere[i % 26].ToString(); //fa si che il contatore non superi mai 25
+                    }));
+                    i++;
+                    Thread.Sleep(100);
+                }
 
+            });
             
         }
         private void btnLettera_Click(object sender, RoutedEventArgs e)
         {
-            lblParole.Content=lblLettere.Content.ToString()+lblParole.Content.ToString();
+            lblParole.Content=lblLettere.Content.ToString()+lblParole.Content.ToString(); //aggiorna il contenuto della labelparole aggiungendo ogni lettera
             if (lblParole.Content.ToString().Length == 6)
             {
-                listaParole.Items.Add(lblParole.Content);
+                listaParole.Items.Add(lblParole.Content); //aggiunge la parola alla listbox
                 lblParole.Content = "";
 
             }
