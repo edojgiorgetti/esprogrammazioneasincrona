@@ -14,17 +14,17 @@
 
         <StackPanel Grid.Column="0" VerticalAlignment="Top">
             <TextBlock Text="Lettera estratta:" Margin="0,0,0,5" />
-            <Label x:Name="lblLettere" Content="" FontSize="30" FontWeight="Bold" Margin="0,0,0,20" />
+            <Label x:Name="lblLettere" Content="" FontSize="30" FontWeight="Bold" Margin="0,0,0,20" Background="#FFECDEF4" />
 
             <TextBlock Text="Parola:" Margin="0,0,0,5" />
-            <Label x:Name="lblParole" Content="" FontSize="18" Margin="0,0,0,20" />
+            <Label x:Name="lblParole" Content="" FontSize="18" Margin="0,0,0,20" Background="#FFECDEF4"/>
 
-            <Button x:Name="btnLettera" Content="Clicca qui" Click="btnLettera_Click" Height="40" />
+            <Button x:Name="btnLettera" Content="Clicca qui" Click="btnLettera_Click" Height="40" Background="#FFE1E1F4" />
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Margin="20,0,0,0">
-            <TextBlock Text="Storico parole:" Margin="0,0,0,5" />
-            <ListBox x:Name="listaParole" Height="180" />
+        <StackPanel Grid.Column="1" Margin="20,0,0,0" Background="#FFCFECEC">
+            <TextBlock Text="Storico parole:" Margin="0,0,0,5"/>
+            <ListBox x:Name="listaParole" Height="180" Background="#FFCFECEC" />
         </StackPanel>
 
     </Grid>
