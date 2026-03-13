@@ -44,12 +44,24 @@ namespace esprogrammazioneasincrona
         }
         private void btnLettera_Click(object sender, RoutedEventArgs e)
         {
+            int numlettere;
+            bool valido = int.TryParse(txbnumlettere.Text, out numlettere); //il tryparse restituisce true se non c'è errore, altrimenti false 
             lblParole.Content=lblLettere.Content.ToString()+lblParole.Content.ToString(); //aggiorna il contenuto della labelparole aggiungendo ogni lettera
-            if (lblParole.Content.ToString().Length == 6)
+            if (valido) //se è true eseguo
             {
-                listaParole.Items.Add(lblParole.Content); //aggiunge la parola alla listbox
-                lblParole.Content = "";
+                if (lblParole.Content.ToString().Length >= numlettere)
+                {
+                    listaParole.Items.Add(lblParole.Content); //aggiunge la parola alla listbox
+                    lblParole.Content = "";
 
+                }
+            }
+            else //se è false invio un messaggio opportuno
+            {
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    MessageBox.Show("devi inserire un numero e non una parola, Reinserire");
+                }));
             }
         }
     }
